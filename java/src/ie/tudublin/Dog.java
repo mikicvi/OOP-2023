@@ -2,9 +2,27 @@ package ie.tudublin;
 
 public class Dog
 {
+    String name;
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
     public Dog()
     {
-        System.out.println("Dog constructor");
+
     }
+
+    public Dog(String name)
+    {
+
+    }
+
+    public void speak()
+    {
+        System.out.println("Woof");
+    }
+    
 
 }
