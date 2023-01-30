@@ -12,7 +12,7 @@ public class HelloProcessing extends PApplet
 
 	public void setup() {
 		//colorMode(HSB);
-		background(0);
+		background(255, 0, 0); // red background
 
 		
 	}
@@ -20,17 +20,25 @@ public class HelloProcessing extends PApplet
 	
 	public void draw()
 	{	
-		line(10,10,100,100);// x1, y1, x2, y2
-		stroke(255); // color
-		fill(255,255,0); // yellow
-		circle(300, 250, 70); // cx, cy, r
-		fill(255,0,0);//red
-		rect(10, 300, 40, 100); // tlx, tly, width, height
-		stroke(127);
+		background(255, 0, 0); //redraw the background
 		noStroke();
-		noFill();
-		strokeWeight(1);// thickness
-		fill(0,0,255); // blue
-		triangle(40,90, 300, 20, 80, 70);
+		//yellow circle
+		fill(255, 255, 0);
+		ellipse(250, 250, 460,460);
+		//sky blue triangle over circle
+		fill(0, 255, 255);
+		triangle(250, 0, 50, 450, 450, 450);
+		//eclipe eye shaped
+		fill(255, 255, 255);
+		ellipse(250, 250, 200, 120);
+		//eye black part
+		fill(0,0,0);
+		ellipse(250, 250, 75, 75);
+		// if mouse click -> close eye
+		if (mousePressed) {
+			fill(255, 255, 255);
+			ellipse(250, 250, 75, 75);
+		}
+
 	}
 }
