@@ -13,55 +13,75 @@ public class BugZap extends PApplet
 	public void setup() {
 		colorMode(HSB);
 		background(0);
+		playerX = 250;
+		playerY = 490;
+		playerWidth = 50;
 
-		x1 = random(0, width);
-		x2 = random(0, width);
-		y1 = random(0, height);
-		y2 = random(0, height);
 
-		float range = 5;
-
-		x1dir = random(-range, range);
-		x2dir = random(-range, range);
-		y1dir = random(-range, range);
-		y2dir = random(-range, range);
-
-		smooth();
-		
+		bugX = random(30, 470);
+		bugY = 0;
+		bugWidth = 30;
 	}
 
-	float x1, y1, x2, y2;
-	float x1dir, x2dir, y1dir, y2dir;
-	float c = 0;
+	float playerX, playerY, playerHeight, playerWidth;
+	float bugX, bugY, bugWidth, bugHeight, bugInitX;
+
+
 	
 	public void draw()
 	{	
-		strokeWeight(2);
-		stroke(c, 255, 255);
-		c = (c + 1f) % 255;
-		line(x1, y1, x2, y2);
+		background(0);
+		drawPlayer(playerX, playerY, playerWidth);
 
-		x1 += x1dir;
-		x2 += x2dir;
-		y1 += y1dir;
-		y2 += y2dir;
-		
-		if (x1 < 0 || x1 > width)
+		if((frameCount % 60) == 0)
 		{
-			x1dir = - x1dir;
+			bugX = random(bugX - 20, bugX + 25);
+			bugY += 15;
 		}
-		if (y1 < 0 || y1 > height)
-		{
-			y1dir = - y1dir;
-		}
+		drawBug(bugX, bugY , bugWidth);
+	}
 
-		if (x2 < 0 || x2 > width)
+	void drawPlayer (float x, float y, float w)
+	{
+		// create space invaders rocket
+		// body
+		fill(220);
+
+		rect(x, y, w, w * 0.5f);
+	}
+
+	void drawBug(float x, float y, float w)
+	{
+		// create space invaders bug
+		// body
+		fill(220);
+		ellipse(x, y, bugWidth, bugWidth-10);
+
+	}
+
+	public void keyPressed()
+	{
+		if (keyCode == LEFT)
 		{
-			x2dir = - x2dir;
+			// add player bounds
+			if(playerX > 0)
+			{
+				playerX -= 5;
+			}
 		}
-		if (y2 < 0 || y2 > height)
+		if (keyCode == RIGHT)
 		{
-			y2dir = - y2dir;
+			if(playerX < 500 - playerWidth)
+			{
+				playerX += 5;
+			}
+		}
+		if (key == ' ')
+		{
+			// fire bullet
+			fill(250);
+			stroke(250);
+			line(playerX + 25, playerY - 10, playerX + 25, 0);
 		}
 	}
 }
