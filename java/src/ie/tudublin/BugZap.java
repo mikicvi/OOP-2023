@@ -62,13 +62,16 @@ public class BugZap extends PApplet
 
 	void drawPlayer (float x, float y, float w)
 	{
-		fill(220);
+		fill(250);
+		fill(120, 100, 100);
 		rect(x, y, w, w * 0.5f);
 	}
 
 	void drawBug(float x, float y, float w)
 	{
 		fill(220);
+		//red color in HSL
+		fill(0, 100, 100);
 		ellipse(x, y, bugWidth, bugWidth-10);
 
 	}
