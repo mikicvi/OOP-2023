@@ -17,9 +17,11 @@ public class HelloProcessing extends PApplet
 		
 	}
 
+	int x = 0;
+
 	
 	public void draw()
-	{	
+	{	// the allseeing eye
 		background(255, 0, 0); //redraw the background
 		noStroke();
 		//yellow circle
@@ -39,6 +41,9 @@ public class HelloProcessing extends PApplet
 			fill(255, 255, 255);
 			ellipse(250, 250, 75, 75);
 		}
+
+		//background(0);
+
 
 	}
 }
