@@ -5,6 +5,11 @@ import processing.core.PApplet;
 public class BugZap extends PApplet
 {
 
+	float playerX, playerY, playerHeight, playerWidth;
+	float bugX, bugY, bugWidth, bugHeight, bugInitX;
+	float score = 0;
+	int inGame = 0;
+
 	public void settings()
 	{
 		size(500, 500);
@@ -15,22 +20,14 @@ public class BugZap extends PApplet
 		
 		colorMode(HSB);
 		background(0);
-		playerX = 250;
+		playerX = width * 0.5f;
 		playerY = 490;
 		playerWidth = 50;
-
 
 		bugX = random(30, 470);
 		bugY = 20;
 		bugWidth = 30;
 	}
-
-	float playerX, playerY, playerHeight, playerWidth;
-	float bugX, bugY, bugWidth, bugHeight, bugInitX;
-	float score = 0;
-	int inGame = 0;
-
-
 
 	public void draw()
 	{	
