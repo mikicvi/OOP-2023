@@ -15,20 +15,39 @@ public class Loops extends PApplet
 
 	public void draw() 
 	{
+		background(0);
+		drawRect();
 
 	}
 
 	public void drawRect()
 	{
-		int topleftX = 100;
-		int topleftY = 100;
-		int bottomrightX = 200;
-		int bottomrightY = 200;
+		int topleftX = 500;
+		int topleftY = 0;
+		int bottomrightX = 250;
+		int bottomrightY = 1000;
 
-		rect(topleftY, bottomrightY, bottomrightX, bottomrightY);
+		if(mouseX > 500)
+		{
+			bottomrightX = 300;
+		}
+		else if(mouseX < 500)
+		{
+			bottomrightX = -300;
+		}
+		if(mouseY > 500)
+		{
+			bottomrightY = 300;
+		}
+		else if(mouseY < 500)
+		{
+			bottomrightY = 800;
+		}
 
-		
+		rect(topleftX, topleftY, bottomrightX, bottomrightY);
 	}
+
+
 
 
 }
