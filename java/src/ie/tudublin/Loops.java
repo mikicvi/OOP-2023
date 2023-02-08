@@ -17,10 +17,28 @@ public class Loops extends PApplet
 	public void draw() 
 	{
 		background(0);
-		//drawRect();
-		//loopsLines();
-		loopsStepped();
-
+		// change the game mode based on the number pressed by using mode = key - '0';
+		// 1 = drawRect
+		// 2 = loopsLines
+		// 3 = loopsStepped
+		// 4 = loopLipse
+		
+		switch (key - '0') {
+			case 1:
+				drawRect();
+				break;
+			case 2:
+				loopsLines();
+				break;
+			case 3:
+				loopsStepped();
+				break;
+			case 4:
+				loopLipse();
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void drawRect()
@@ -65,24 +83,35 @@ public class Loops extends PApplet
 	{
 		int i = 0; // start at red
 		int startpoint = 0;
-		for (i = 0; i < 255; i += 25)
+		int startpointX = 100;
+		for (i = 0; i < 10; i ++)
 		{
-			fill(i, 255, 255);
-			rect(i * 4, startpoint, 100, 100);
+			fill(i*25, 255, 255);
+			rect(i * 100, startpoint, 100, 100);
+			rect(1000 - (i * 100), startpointX, -100, -100);
 			startpoint += 100;
+			startpointX += 100;
 		}
 	}
 
-	public void loopsSteppedX()
+	public void loopLipse()
 	{
-		int i = 0; // start at red
-		int startpoint = 0;
-		for (i = 0; i < 255; i += 25)
+		int initX = 500;
+		int initY = 500;
+		int color = 200;
+		// draw increasing circles, starting at 0
+		for (int i = 1000; i > 0; i -= 100)
 		{
-			fill(i, 255, 255);
-			rect(i * 4, startpoint, 100, 100);
-			startpoint += 100;
+			//start at yellow in hsb
+			fill(color, 255, 255);
+			ellipse(initX, initY, i, i);
+			color -= 15;
 		}
+
+
+
+
+
 	}
 
 
