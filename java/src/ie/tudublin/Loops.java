@@ -4,6 +4,9 @@ import processing.core.PApplet;
 
 public class Loops extends PApplet 
 {
+
+	int mode = 0;
+
 	public void settings() 
 	{
 		size(1000, 1000);
@@ -14,16 +17,23 @@ public class Loops extends PApplet
 		colorMode(HSB);
 	}
 
+	public void keyPressed()
+	{
+		mode = key - '0';
+		println(mode);
+	}
+
 	public void draw() 
 	{
 		background(0);
+		fill(255);
 		// change the game mode based on the number pressed by using mode = key - '0';
 		// 1 = drawRect
 		// 2 = loopsLines
 		// 3 = loopsStepped
 		// 4 = loopLipse
 		
-		switch (key - '0') {
+		switch (mode) {
 			case 1:
 				drawRect();
 				break;
@@ -36,6 +46,9 @@ public class Loops extends PApplet
 			case 4:
 				loopLipse();
 				break;
+			case 5:
+				HSBcircles();;
+				break;
 			default:
 				break;
 		}
@@ -43,6 +56,7 @@ public class Loops extends PApplet
 
 	public void drawRect()
 	{
+		fill(125,255,255);
 		int topleftX = 500;
 		int topleftY = 0;
 		int bottomrightX = 250;
@@ -108,10 +122,25 @@ public class Loops extends PApplet
 			color -= 15;
 		}
 
+	}
 
-
-
-
+	float off = 0;
+	public void HSBcircles()
+	{
+		int numCircles = (int)max(1, mouseX/50.00f);
+		float d = width / numCircles;
+		for (int j=0; j<numCircles; j++)
+		{
+			for (int i=0; i<numCircles; i++)
+			{
+				float x = (d*0.5f) + (i*d);
+				float y = (d*0.5f) + (j*d);
+				float c =((i+j)/((numCircles-1)*2.0f)) * 255.0f;
+				fill((c + off) % 256, 255, 255);
+				circle(x,y,d);
+			}
+		}
+		off+=(mouseY/50.00f);
 	}
 
 
