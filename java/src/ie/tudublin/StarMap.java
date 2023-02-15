@@ -53,6 +53,7 @@ public class StarMap extends PApplet
 	{
 		for(Star s:stars)
 		{
+			//remap the x and y values to fit the screen
 			float x = map(s.xG, -5, 5, 50, width - 50);
 			float y = map(s.yG, -5, 5, 50, height - 50);
 			stroke(50,255,255);
@@ -71,7 +72,7 @@ public class StarMap extends PApplet
 
 
 	//draw line from mouse press to mouse release
-	public void mousePressed()
+	public void mouseDragged()
 	{
 
 		if(mousePressed)
@@ -82,18 +83,25 @@ public class StarMap extends PApplet
 		}
 	}
 
+	// click on the stars and draw a line from star to star, calculate distance between stars
+
 	public void drawLine()
 	{
-
-			stroke(255, 255, 255);
-			line(mouseStartX, mouseStartY, mouseX, mouseY);
+		for(Star s:stars)
+		{
+			float x = map(s.xG, -5, 5, 50, width - 50);
+			float y = map(s.yG, -5, 5, 50, height - 50);
+			if(pressed)
+			{
+				if(mouseX > x-10 && mouseX < x+10 && mouseY > y-10 && mouseY < y+10)
+				{
+					stroke(255, 255, 255);
+					line(mouseStartX, mouseStartY, x, y);
+				}
+			}
+		}
 	}
 
-	public void mouseReleased()
-	{
-		pressed = false;
-		
-	}
 
 	public void drawGrid()
 	{
@@ -125,10 +133,10 @@ public class StarMap extends PApplet
 		strokeWeight(2);		
 		drawGrid();
 		drawStars();
-		if(pressed)
-		{
+		mouseDragged();
+
 			drawLine();
-		}
-		mousePressed();
+
+		
 	}
 }
