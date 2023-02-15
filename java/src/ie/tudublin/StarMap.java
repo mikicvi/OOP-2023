@@ -11,7 +11,9 @@ import java.util.ArrayList;
 public class StarMap extends PApplet
 {
 	ArrayList<Star> stars = new ArrayList<Star>();
-
+	float mouseStartX;
+	float mouseStartY;
+	boolean pressed;
 
 	public void settings()
 	{
@@ -67,15 +69,31 @@ public class StarMap extends PApplet
 		}
 	}
 
-	//Click inside a single star and draw a yellow line to the mouse. You can add a mousePressed method to your sketch. This method will get called when the mouse is pressed. Use mouseX and mouseY to determine the mouse coordinates.
-	//	When you click a second star, the yellow line should join the two stars and you should print the text:
 
+	//draw line from mouse press to mouse release
 	public void mousePressed()
 	{
 
+		if(mousePressed)
+		{
+			mouseStartX = mouseX;
+			mouseStartY = mouseY;
+			pressed = true;
+		}
 	}
 
+	public void drawLine()
+	{
 
+			stroke(255, 255, 255);
+			line(mouseStartX, mouseStartY, mouseX, mouseY);
+	}
+
+	public void mouseReleased()
+	{
+		pressed = false;
+		
+	}
 
 	public void drawGrid()
 	{
@@ -103,10 +121,14 @@ public class StarMap extends PApplet
 		
 	public void draw()
 	{	
-		//background(0);
+		background(0);
 		strokeWeight(2);		
 		drawGrid();
 		drawStars();
+		if(pressed)
+		{
+			drawLine();
+		}
 		mousePressed();
 	}
 }
