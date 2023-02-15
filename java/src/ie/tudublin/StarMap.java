@@ -47,6 +47,34 @@ public class StarMap extends PApplet
 		}
 	}
 
+	public void drawStars()
+	{
+		for(Star s:stars)
+		{
+			float x = map(s.xG, -5, 5, 50, width - 50);
+			float y = map(s.yG, -5, 5, 50, height - 50);
+			stroke(50,255,255);
+			line(x-5, y, x+5, y);
+			line(x, y-5, x, y+5);
+
+			stroke(0,255,255);
+			noFill();
+			circle(x, y, s.distance*8);
+
+			textAlign(LEFT, CENTER);
+			text(s.displayName, x+20, y);
+
+		}
+	}
+
+	//Click inside a single star and draw a yellow line to the mouse. You can add a mousePressed method to your sketch. This method will get called when the mouse is pressed. Use mouseX and mouseY to determine the mouse coordinates.
+	//	When you click a second star, the yellow line should join the two stars and you should print the text:
+
+	public void mousePressed()
+	{
+
+	}
+
 
 
 	public void drawGrid()
@@ -75,8 +103,10 @@ public class StarMap extends PApplet
 		
 	public void draw()
 	{	
+		//background(0);
 		strokeWeight(2);		
-
 		drawGrid();
+		drawStars();
+		mousePressed();
 	}
 }
