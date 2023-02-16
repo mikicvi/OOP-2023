@@ -26,9 +26,7 @@ public class StarMap extends PApplet
 		smooth();
 		printStars();
 		border = width * 0.1f;
-		
-
-
+	
 	}
 
 	void loadData()
@@ -53,20 +51,7 @@ public class StarMap extends PApplet
 	{
 		for(Star s:stars)
 		{
-			//remap the x and y values to fit the screen
-			float x = map(s.xG, -5, 5, 50, width - 50);
-			float y = map(s.yG, -5, 5, 50, height - 50);
-			stroke(50,255,255);
-			line(x-5, y, x+5, y);
-			line(x, y-5, x, y+5);
-
-			stroke(0,255,255);
-			noFill();
-			circle(x, y, s.distance*8);
-
-			textAlign(LEFT, CENTER);
-			text(s.displayName, x+20, y);
-
+			s.render(this);
 		}
 	}
 
@@ -75,8 +60,8 @@ public class StarMap extends PApplet
 	{
 		for(Star s:stars)
 		{
-			float x = map(s.xG, -5, 5, 50, width - 50);
-			float y = map(s.yG, -5, 5, 50, height - 50);
+			float x = map(s.getxG(), -5, 5, 50, width - 50);
+			float y = map(s.getyG(), -5, 5, 50, height - 50);
 			
 			if(dist(mouseX, mouseY,x,y) < 20)
 			{
@@ -136,20 +121,20 @@ public class StarMap extends PApplet
 
 		if(firstclicked != null)
 		{
-			float x = map(firstclicked.xG, -5, 5, 50, width - 50);
-			float y = map(firstclicked.yG, -5, 5, 50, height - 50);
+			float x = map(firstclicked.getxG(), -5, 5, 50, width - 50);
+			float y = map(firstclicked.getyG(), -5, 5, 50, height - 50);
 			if(secondclicked != null)
 			{
-				float x2 = map(secondclicked.xG, -5, 5, 50, width - 50);
-				float y2 = map(secondclicked.yG, -5, 5, 50, height - 50);
+				float x2 = map(secondclicked.getxG(), -5, 5, 50, width - 50);
+				float y2 = map(secondclicked.getyG(), -5, 5, 50, height - 50);
 				stroke(70, 255, 255);
 				line(x, y, x2, y2);
 
-				float dist = dist(firstclicked.xG, firstclicked.yG, firstclicked.zG, secondclicked.xG, secondclicked.yG, secondclicked.zG);
+				float dist = dist(firstclicked.getxG(), firstclicked.getyG(), firstclicked.getzG(), secondclicked.getxG(), secondclicked.getyG(), secondclicked.getzG());
 				
 				fill(255);
 				textAlign(CENTER, CENTER);
-				text("Distance between: " + firstclicked.displayName + " and " + secondclicked.displayName + " is " + dist, width/2, height - 50);
+				text("Distance between: " + firstclicked.getDisplayName() + " and " + secondclicked.getDisplayName() + " is " + dist + "parsecs", width/2, height - 50);
 			}
 			else
 			{

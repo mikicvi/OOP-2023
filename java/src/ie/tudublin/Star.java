@@ -1,6 +1,7 @@
 package ie.tudublin;
 
 
+import processing.core.PApplet;
 import processing.data.TableRow;
 
 public class Star {
@@ -97,6 +98,23 @@ public class Star {
 
     public float getAbsMag() {
         return absMag;
+    }
+
+    public void render(StarMap pa)
+    {
+    			//remap the x and y values to fit the screen
+			float x = PApplet.map(xG, -5, 5, 50, pa.width - 50);
+			float y = PApplet.map(yG, -5, 5, 50, pa.height - 50);
+			pa.stroke(50,255,255);
+			pa.line(x-5, y, x+5, y);
+			pa.line(x, y-5, x, y+5);
+
+			pa.stroke(0,255,255);
+			pa.noFill();
+			pa.circle(x, y, distance*8);
+
+			pa.textAlign(PApplet.LEFT, PApplet.CENTER);
+			pa.text(displayName, x+20, y);
     }
 
 
