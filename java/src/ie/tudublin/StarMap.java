@@ -11,9 +11,8 @@ import java.util.ArrayList;
 public class StarMap extends PApplet
 {
 	ArrayList<Star> stars = new ArrayList<Star>();
-	float mouseStartX;
-	float mouseStartY;
-	boolean pressed;
+	Star firstclicked = null;
+	Star secondclicked = null;
 
 	public void settings()
 	{
@@ -71,36 +70,36 @@ public class StarMap extends PApplet
 	}
 
 
-	//draw line from mouse press to mouse release
-	public void mouseDragged()
-	{
-
-		if(mousePressed)
-		{
-			mouseStartX = mouseX;
-			mouseStartY = mouseY;
-			pressed = true;
-		}
-	}
-
-	// click on the stars and draw a line from star to star, calculate distance between stars
-
-	public void drawLine()
+	public void mouseClicked()
 	{
 		for(Star s:stars)
 		{
-			float x = map(s.xG, -5, 5, 50, width - 50);
+			float x = map(sy.xG, -5, 5, 50, width - 50);
 			float y = map(s.yG, -5, 5, 50, height - 50);
-			if(pressed)
+			
+			if(dist(mouseX, mouseY,x,y) < 20)
 			{
-				if(mouseX > x-10 && mouseX < x+10 && mouseY > y-10 && mouseY < y+10)
+				if(firstclicked == null)
 				{
-					stroke(255, 255, 255);
-					line(mouseStartX, mouseStartY, x, y);
+					firstclicked = s;
+					break;
 				}
+				else if(secondclicked == null)
+				{
+					secondclicked = s;
+					break;
+				}
+				else
+				{
+					firstclicked = s;
+					secondclicked = null;
+					break;
+				}
+
 			}
 		}
 	}
+
 
 
 	public void drawGrid()
@@ -133,10 +132,11 @@ public class StarMap extends PApplet
 		strokeWeight(2);		
 		drawGrid();
 		drawStars();
-		mouseDragged();
 
-			drawLine();
-
+		if(firstclicked != null)
+		{
+			floa
+		}
 		
 	}
 }
