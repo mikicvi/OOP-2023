@@ -38,6 +38,7 @@ public class Star {
 		this.absMag = absMag;
 	}
 
+    @Override
     public String toString()
     {
         return displayName + "\t" + distance + "\t" + xG + "\t" + yG + "\t" + zG + "\t" + absMag + "\t" + hab;

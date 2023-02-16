@@ -1,6 +1,5 @@
 package ie.tudublin;
 
-import java.util.ArrayList;
 
 import processing.core.PApplet;
 import processing.data.Table;
@@ -13,6 +12,7 @@ public class StarMap extends PApplet
 	ArrayList<Star> stars = new ArrayList<Star>();
 	Star firstclicked = null;
 	Star secondclicked = null;
+	public float border;
 
 	public void settings()
 	{
@@ -25,6 +25,7 @@ public class StarMap extends PApplet
 		loadData();
 		smooth();
 		printStars();
+		border = width * 0.1f;
 		
 
 
@@ -74,7 +75,7 @@ public class StarMap extends PApplet
 	{
 		for(Star s:stars)
 		{
-			float x = map(sy.xG, -5, 5, 50, width - 50);
+			float x = map(s.xG, -5, 5, 50, width - 50);
 			float y = map(s.yG, -5, 5, 50, height - 50);
 			
 			if(dist(mouseX, mouseY,x,y) < 20)
@@ -135,7 +136,26 @@ public class StarMap extends PApplet
 
 		if(firstclicked != null)
 		{
-			floa
+			float x = map(firstclicked.xG, -5, 5, 50, width - 50);
+			float y = map(firstclicked.yG, -5, 5, 50, height - 50);
+			if(secondclicked != null)
+			{
+				float x2 = map(secondclicked.xG, -5, 5, 50, width - 50);
+				float y2 = map(secondclicked.yG, -5, 5, 50, height - 50);
+				stroke(70, 255, 255);
+				line(x, y, x2, y2);
+
+				float dist = dist(firstclicked.xG, firstclicked.yG, firstclicked.zG, secondclicked.xG, secondclicked.yG, secondclicked.zG);
+				
+				fill(255);
+				textAlign(CENTER, CENTER);
+				text("Distance between: " + firstclicked.displayName + " and " + secondclicked.displayName + " is " + dist, width/2, height - 50);
+			}
+			else
+			{
+				stroke(70, 255, 255);
+				line(x, y, mouseX, mouseY);
+			}
 		}
 		
 	}
