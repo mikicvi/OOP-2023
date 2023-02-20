@@ -40,10 +40,27 @@ public class Audio1 extends PApplet
         stroke(255);
         
         float half = height / 2;
+        float cgap = 255 / (float)ab.size(); // colour gap between each line
+
+        float total = 0;
+        
         for(int i = 0; i < ab.size(); i++)
         {
-
+            total += ab.get(i);
+            stroke(i * cgap, 255, 255);
             line(i,half,i, half + ab.get(i) * half); // get(i) returns the value of the sample at index i, * half to scale it down to the height of the window
+            
+            // circle that increases in size based on the amplitude of the audio
+            circle(300,300, ab.get(i) * 1000);
         }
-	}
+        float average = total / (float)ab.size();
+
+        float r = average * 200;
+        lerpedR = lerp(lerpedR, r, 0.1f); // lerping the radius of the circle means that the circle will grow and shrink smoothly
+
+        circle(100, 200, lerpedR);
+
+        
+    }
+    float lerpedR = 0;
 }
