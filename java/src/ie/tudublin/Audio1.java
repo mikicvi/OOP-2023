@@ -105,6 +105,23 @@ public class Audio1 extends PApplet
                 break;
             case 2:
             //The waveform drawn down the 4 sides of the screen
+                background(0);
+                for(int i = 0 ; i < ab.size(); i++)
+                {
+                    float c = map(i, 0, ab.size(), 0, 255);
+                    stroke(c, 255, 255);
+                    float f = ab.get(i) * halfH;
+                    
+                    //left side
+                    line(0, i, f, i);
+                    //top side
+                    line(i, 0, i, f);
+                    //right side
+                    line(width, i, width - f, i);
+                    //bottom side
+                    line(i, height, i, height - f);
+
+                }
 
 
         }
