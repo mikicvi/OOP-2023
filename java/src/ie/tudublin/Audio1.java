@@ -160,19 +160,29 @@ public class Audio1 extends PApplet
             noFill();
             for (int i = 0; i < ab.size(); i++)
             {   
-                float r = map(smoothedAmplitude, 0, 0.5f, 100, 2000);
                 float c = map(smoothedAmplitude, 0, 1, 0, 255);
+                float c2 = map(i, 0, ab.size(), 0, 255);
                 float f = ab.get(i) * halfH;
                 stroke(c, 255, 255);
                 strokeWeight(3);
                 // triangle of fixed size
                 triangle(150,800, 850,800, 500,200);
+                //left side
+                stroke(c2, 255, 255);
+                strokeWeight(1);
                 line(left+350,height,left+350-abs(f),height);
-                left-=0.63;
+                left-=0.58;
                 if(height<800)
                 {
                     height++;
                 }
+                //right side
+                line(right-350,height,right-350+abs(f),height);
+                right+=0.58;
+                //bottom side
+                line(mid,botheight,mid+f,botheight);
+                // line through middle (top to bottom)
+                line(mid,200,mid - f,height+botheight);
             }
             break;
 
