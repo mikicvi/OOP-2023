@@ -51,7 +51,7 @@ public class Audio1 extends PApplet
             line(i,half,i, half + ab.get(i) * half); // get(i) returns the value of the sample at index i, * half to scale it down to the height of the window
             
             // circle that increases in size based on the amplitude of the audio
-            circle(300,300, ab.get(i) * 1000);
+            //circle(300,300, ab.get(i) * 1000);
         }
         float average = total / (float)ab.size();
 
