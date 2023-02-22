@@ -182,7 +182,7 @@ public class Audio1 extends PApplet
                 //bottom side
                 line(mid,botheight,mid+f,botheight);
                 // line through middle (top to bottom)
-                line(mid,200,mid - f,height+botheight);
+                line(mid,200,mid - f,botheight);
             }
             break;
 
