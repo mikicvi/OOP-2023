@@ -100,7 +100,7 @@ public class Audio1 extends PApplet
                     float c = map(i, 0, ab.size(), 0, 255);
                     stroke(c, 255, 255);
                     float f = ab.get(i) * halfH;
-                    line(i, halfH, i, halfH + f);
+                    line(i, halfH + f, i, halfH - f);
                 }            
                 break;
             case 2:
@@ -148,6 +148,24 @@ public class Audio1 extends PApplet
                 rectMode(CENTER);
                 rect(cx, cy, r, r);
             }
+            break;
+            case 5:
+            // The triangle of fixed size with an eye in middle and lines coming out of it
+            float left = cx - 150;
+            float right = cx + 150;
+            background(0);
+            noFill();
+            for (int i = 0; i < ab.size(); i++)
+            {   
+                float r = map(smoothedAmplitude, 0, 0.5f, 100, 2000);
+                float c = map(smoothedAmplitude, 0, 1, 0, 255);
+                float f = ab.get(i) * halfH;
+                stroke(c, 255, 255);
+                strokeWeight(3);
+                // triangle of fixed size
+                triangle(150,800, 850,800, 500,200);
+            }
+            break;
 
 
 
