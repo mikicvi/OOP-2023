@@ -151,8 +151,11 @@ public class Audio1 extends PApplet
             break;
             case 5:
             // The triangle of fixed size with an eye in middle and lines coming out of it
-            float left = cx - 150;
-            float right = cx + 150;
+            float mid = 500;
+            float height = 200;
+            float left = 150;
+            float right = 850;
+            float botheight = 800;
             background(0);
             noFill();
             for (int i = 0; i < ab.size(); i++)
@@ -164,6 +167,12 @@ public class Audio1 extends PApplet
                 strokeWeight(3);
                 // triangle of fixed size
                 triangle(150,800, 850,800, 500,200);
+                line(left+350,height,left+350-abs(f),height);
+                left-=0.63;
+                if(height<800)
+                {
+                    height++;
+                }
             }
             break;
 
