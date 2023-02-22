@@ -134,6 +134,21 @@ public class Audio1 extends PApplet
                     strokeWeight(3);
                     circle(cx, cy, r);
                 }
+                break;
+            case 4:
+            // The square - Again use the lerped amplitude to control the size of the square. You can also use rectMode(CENTER) to make the x and y parameters of the rect function determine the center of the rect rather than the coordinates of the top left corner
+            background(0);
+            noFill();
+            for (int i = 0; i < ab.size(); i++)
+            {   
+                float r = map(smoothedAmplitude, 0, 0.5f, 100, 2000);
+                float c = map(smoothedAmplitude, 0, 1, 0, 255);
+                stroke(c, 255, 255);
+                strokeWeight(3);
+                rectMode(CENTER);
+                rect(cx, cy, r, r);
+            }
+
 
 
         }
