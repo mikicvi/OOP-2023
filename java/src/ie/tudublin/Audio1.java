@@ -67,12 +67,14 @@ public class Audio1 extends PApplet
         float halfH = height / 2;
         float average = 0;
         float sum = 0;
+        float lerpedbuffer[];
         off += 1;
         // Calculate sum and average of the samples
         // Also lerp each element of buffer;
         for(int i = 0 ; i < ab.size() ; i ++)
         {
             sum += abs(ab.get(i));
+            lerpedbuffer[i] = lerp(lerpedbuffer[i], ab.get(i), 0.1f);
         }
         average= sum / (float) ab.size();
 
@@ -89,7 +91,7 @@ public class Audio1 extends PApplet
                     //float c = map(ab.get(i), -1, 1, 0, 255);
                     float c = map(i, 0, ab.size(), 0, 255);
                     stroke(c, 255, 255);
-                    float f = ab.get(i) * halfH;
+                    float f = lerpedbuffer[i] * halfH * 0.4f;
                     line(i, halfH + f, i, halfH - f);                    
                 }
                 break;
