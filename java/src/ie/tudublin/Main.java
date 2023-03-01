@@ -46,6 +46,10 @@ public class Main
 		Dog penny = new Dog();
 		penny.setName("Penny");
 		penny.speak();
+		PitchSpeller ps = new PitchSpeller();
+		System.out.println(ps.spell(320));
+		System.out.println(ps.spell(420));
+		System.out.println(ps.spell(500));
 
 		audio2();
 	}

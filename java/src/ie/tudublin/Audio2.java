@@ -29,7 +29,7 @@ public class Audio2 extends PApplet{
         ab = ai.mix;
         lerpedBuffer = new float[width];
 
-        fft = new FFT(width, 44100);
+        fft = new FFT(width, 44100); //fft is what we use to analyze the audio, FFT: perform a Fourier Transform on audio data to generate a frequency spectrum
     }
 
     float[] lerpedBuffer;
@@ -87,5 +87,11 @@ public class Audio2 extends PApplet{
         float howFar = a - b;
 
         return d + (howFar / range1) * range2;
+    }
+
+    void twoCircles(float x, float y, float r1, float r2)
+    {
+        circle(x, y, r1);
+        circle(x, y, r2);
     }
 }
