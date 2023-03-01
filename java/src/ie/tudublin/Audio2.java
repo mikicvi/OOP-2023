@@ -19,7 +19,7 @@ public class Audio2 extends PApplet{
 
     public void settings()
     {
-        size(1024, 1024);
+        size(1024, 1024, P3D);
     }
 
     public void setup()
@@ -83,6 +83,13 @@ public class Audio2 extends PApplet{
         float color = map(freq, 0, 1174.66f, 0, 255);
 
         twoCircles(lerpedY*0.4f, color);
+
+        //size(400,400,P3D);
+        stroke(255);
+        translate(232, 192, 0); 
+        rotateY(0.5f);
+        noFill();
+        box(160);
         
 
 
