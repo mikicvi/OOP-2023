@@ -25,13 +25,18 @@ public class Audio2 extends PApplet{
     public void setup()
     {
         m = new Minim(this);
-        ai = m.getLineIn(Minim.MONO, width, 44100, 16);
-        ab = ai.mix;
+        //ai = m.getLineIn(Minim.MONO, width, 44100, 16);
+        //ab = ai.mix;
+        ap = m.loadFile("scale.wav", width);
+        ap.play();
+        ab = ap.mix;
         lerpedBuffer = new float[width];
 
         fft = new FFT(width, 44100); //fft is what we use to analyze the audio, FFT: perform a Fourier Transform on audio data to generate a frequency spectrum
+        
     }
-
+    
+    PitchSpeller ps = new PitchSpeller();
     float[] lerpedBuffer;
     public void draw()
     {
@@ -59,17 +64,25 @@ public class Audio2 extends PApplet{
             {
                 highestIndex = i;
             }
+            
         }
+
+        text(ps.spell(fft.indexToFreq(highestIndex)), 200, 200);
+
 
         float freq = fft.indexToFreq(highestIndex);
         fill(255);
         textSize(20);
         text("Freq: " + freq, 100, 100);
-
-        float y = map(freq, 1000.0f, 2500.0f, height, 0);
-        lerpedY = lerp(lerpedY, y, 0.1f);
+        float y = map(freq, 0, 1174.66f, 0, height);
+        lerpedY = lerp(lerpedY, y, 0.9f);
+        
         circle(200, y, 50);
         circle(300, lerpedY, 50);
+
+        float color = map(freq, 0, 1174.66f, 0, 255);
+
+        twoCircles(lerpedY*0.4f, color);
         
 
 
@@ -89,9 +102,11 @@ public class Audio2 extends PApplet{
         return d + (howFar / range1) * range2;
     }
 
-    void twoCircles(float x, float y, float r1, float r2)
-    {
-        circle(x, y, r1);
-        circle(x, y, r2);
+    void twoCircles(float r1, float c)
+    {   
+        noStroke();
+        fill(c, 255, 255);
+        circle(341,500 , r1);
+        circle(682, 500, r1);
     }
 }
