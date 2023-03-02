@@ -33,14 +33,14 @@ public class Audio3 extends PApplet{
             ap.play();
             }
         }
-        // if (key == '1')
-        // {
-        //     createCubes(5);
-        // }
-        // if (key == '2')
-        // {
-        //     createCubes(4);
-        // }
+        if (key == '1')
+        {
+            createCubes(5);
+        }
+        if (key == '2')
+        {
+            createCubes(4);
+        }
     }
 
     public void settings()
@@ -52,7 +52,7 @@ public class Audio3 extends PApplet{
     {
         m = new Minim(this);
         ap = m.loadFile("tomp3.cc - 08 PsychNerD and Marco G  More Cowbell.mp3", 1024);
-        // i = m.getLineIn(Minim.MONO, width, 44100, 16);
+        // ai = m.getLineIn(Minim.MONO, width, 44100, 16);
         ab = ap.mix;
         lerpedBuffer = new float[width];
 
@@ -66,11 +66,10 @@ public class Audio3 extends PApplet{
         for (int i = 0; i < numCubes; i++)
         {
             float x = (width / 2) + sin(i * theta) * 300;
-            float y = (height / 2) - cos(i * theta) * 300;
+            float y = (height / 2) + cos(i * theta);
             Cube c = new Cube();
             c.x = x;
             c.y = y;
-            createCubes(2);
             cubes.add(c);
 
         }
@@ -107,19 +106,8 @@ public class Audio3 extends PApplet{
             cube.render(this);
         }
 
-        createCubes(2);
+        createCubes(1);
         rot += 0.01f;
 
-    }
-
-    float lerpedY = 0;
-    
-    float map1(float a, float b, float c, float d, float e)
-    {
-        float range1 = c - b;
-        float range2 = e - d;
-        float howFar = a - b;
-
-        return d + (howFar / range1) * range2;
     }
 }

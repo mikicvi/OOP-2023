@@ -21,5 +21,6 @@ public class Cube {
         p.rotateY(rot);
 
         p.box(size);
+        p.popMatrix();
     }
 }
