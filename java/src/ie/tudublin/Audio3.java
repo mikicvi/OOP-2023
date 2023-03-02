@@ -25,48 +25,49 @@ public class Audio3 extends PApplet{
     {
         if (key == ' ')
         {
-            if (ap.isPlaying()) {
+            if (ap.isPlaying()) 
+            {
             ap.pause();
             }
 
-            else {
+            else 
+            {
             ap.play();
             }
         }
-        if (key == '1')
+        if(key >='0' && key<='9')
         {
-            createCubes(5);
-        }
-        if (key == '2')
-        {
-            createCubes(4);
+            createCubes(key-'0');
         }
     }
 
     public void settings()
     {
         size(1024, 1024, P3D);
+        //fullScreen(P3D, SPAN); // has to be used with p3d
     }
 
     public void setup()
     {
+        colorMode(HSB);
         m = new Minim(this);
         ap = m.loadFile("tomp3.cc - 08 PsychNerD and Marco G  More Cowbell.mp3", 1024);
         // ai = m.getLineIn(Minim.MONO, width, 44100, 16);
         ab = ap.mix;
         lerpedBuffer = new float[width];
 
+        createCubes(2);
+
     }
 
     public void createCubes(int numCubes)
     {
         cubes.clear();
-        
         float theta = TWO_PI / (float)numCubes;
         for (int i = 0; i < numCubes; i++)
         {
             float x = (width / 2) + sin(i * theta) * 300;
-            float y = (height / 2) + cos(i * theta);
+            float y = (height / 2) - cos(i * theta) * 300;
             Cube c = new Cube();
             c.x = x;
             c.y = y;
@@ -80,15 +81,13 @@ public class Audio3 extends PApplet{
 
     public void draw()
     {
-        background(0);
-        colorMode(HSB);
         float total = 0;
         for(int i = 0 ; i < ab.size() ; i ++)
         {
             total += abs(ab.get(i));
         }
-       
-        float average = total / ab.size();
+        float average = total / (float)ab.size();
+        
         lerpedAverage = lerp(lerpedAverage, average, 0.1f);
         float c = map(lerpedAverage, 0, 0.5f, 0, 255);
 
@@ -106,7 +105,6 @@ public class Audio3 extends PApplet{
             cube.render(this);
         }
 
-        createCubes(1);
         rot += 0.01f;
 
     }
