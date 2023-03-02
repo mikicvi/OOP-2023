@@ -30,14 +30,17 @@ public class Audio3 extends PApplet{
             }
 
             else {
-            ap.rewind();
             ap.play();
             }
         }
-        if (key == '1')
-        {
-            createCubes(1);
-        }
+        // if (key == '1')
+        // {
+        //     createCubes(5);
+        // }
+        // if (key == '2')
+        // {
+        //     createCubes(4);
+        // }
     }
 
     public void settings()
@@ -58,6 +61,7 @@ public class Audio3 extends PApplet{
     public void createCubes(int numCubes)
     {
         cubes.clear();
+        
         float theta = TWO_PI / (float)numCubes;
         for (int i = 0; i < numCubes; i++)
         {
@@ -74,19 +78,21 @@ public class Audio3 extends PApplet{
     float rot;
     float lerpedAverage = 0;
     float[] lerpedBuffer;
+
     public void draw()
     {
+        background(0);
+        colorMode(HSB);
         float total = 0;
         for(int i = 0 ; i < ab.size() ; i ++)
         {
             total += abs(ab.get(i));
         }
+       
         float average = total / ab.size();
-
         lerpedAverage = lerp(lerpedAverage, average, 0.1f);
-
-
         float c = map(lerpedAverage, 0, 0.5f, 0, 255);
+
 
         rot += map(lerpedAverage, 0, 1.0f, 0, 0.5f);
 
@@ -100,7 +106,10 @@ public class Audio3 extends PApplet{
             cube.rot = rot;
             cube.render(this);
         }
+
+        createCubes(2);
         rot += 0.01f;
+
     }
 
     float lerpedY = 0;
