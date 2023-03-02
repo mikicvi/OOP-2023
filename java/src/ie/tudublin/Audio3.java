@@ -50,6 +50,7 @@ public class Audio3 extends PApplet{
     public void setup()
     {
         colorMode(HSB);
+        lights();
         m = new Minim(this);
         ap = m.loadFile("tomp3.cc - 08 PsychNerD and Marco G  More Cowbell.mp3", 1024);
         // ai = m.getLineIn(Minim.MONO, width, 44100, 16);
@@ -75,12 +76,13 @@ public class Audio3 extends PApplet{
 
         }
     }
-    float rot;
+    float rot = 0;
     float lerpedAverage = 0;
     float[] lerpedBuffer;
 
     public void draw()
     {
+        background(0);
         float total = 0;
         for(int i = 0 ; i < ab.size() ; i ++)
         {
@@ -105,7 +107,7 @@ public class Audio3 extends PApplet{
             cube.render(this);
         }
 
-        rot += 0.01f;
+        //rot += 0.01f;
 
     }
 }

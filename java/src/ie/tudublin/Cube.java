@@ -11,7 +11,6 @@ public class Cube {
 
     public void render(PApplet p)
     {
-        p.background(0);
         p.stroke(c, 255,255);
         p.strokeWeight(5);
         p.noFill();
