@@ -1,5 +1,7 @@
 package ie.tudublin;
 
+import java.util.ArrayList;
+
 import ddf.minim.AudioBuffer;
 // import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
@@ -17,6 +19,8 @@ public class Audio3 extends PApplet{
 
     FFT fft;
 
+    ArrayList<Cube> cubes = new ArrayList<Cube>();
+
     public void keyPressed()
     {
         if (key == ' ')
@@ -29,6 +33,10 @@ public class Audio3 extends PApplet{
             ap.rewind();
             ap.play();
             }
+        }
+        if (key == '1')
+        {
+            createCubes(1);
         }
     }
 
@@ -45,7 +53,23 @@ public class Audio3 extends PApplet{
         ab = ap.mix;
         lerpedBuffer = new float[width];
 
-        fft = new FFT(width, 44100);
+    }
+
+    public void createCubes(int numCubes)
+    {
+        cubes.clear();
+        float theta = TWO_PI / (float)numCubes;
+        for (int i = 0; i < numCubes; i++)
+        {
+            float x = (width / 2) + sin(i * theta) * 300;
+            float y = (height / 2) - cos(i * theta) * 300;
+            Cube c = new Cube();
+            c.x = x;
+            c.y = y;
+            createCubes(2);
+            cubes.add(c);
+
+        }
     }
     float rot;
     float lerpedAverage = 0;
@@ -61,24 +85,21 @@ public class Audio3 extends PApplet{
 
         lerpedAverage = lerp(lerpedAverage, average, 0.1f);
 
-        lights();
-        background(0);
-        colorMode(HSB);
 
         float c = map(lerpedAverage, 0, 0.5f, 0, 255);
-        stroke(c, 255, 255);
-        strokeWeight(5);
 
         rot += map(lerpedAverage, 0, 1.0f, 0, 0.5f);
-        noFill();
-        translate(width / 2, height / 2);
-        rotateY(rot);
-        rotateX(rot);
 
         float boxSize =  map(lerpedAverage, 0, 0.5f, 100, 500);
 
-        box(boxSize);
-
+        for(int i = 0; i < cubes.size(); i++)
+        {
+            Cube cube = cubes.get(i);
+            cube.size = boxSize;
+            cube.c = c;
+            cube.rot = rot;
+            cube.render(this);
+        }
         rot += 0.01f;
     }
 
