@@ -17,6 +17,21 @@ public class Audio3 extends PApplet{
 
     FFT fft;
 
+    public void keyPressed()
+    {
+        if (key == ' ')
+        {
+            if (ap.isPlaying()) {
+            ap.pause();
+            }
+
+            else {
+            ap.rewind();
+            ap.play();
+            }
+        }
+    }
+
     public void settings()
     {
         size(1024, 1024, P3D);
@@ -32,15 +47,39 @@ public class Audio3 extends PApplet{
 
         fft = new FFT(width, 44100);
     }
-
+    float rot;
+    float lerpedAverage = 0;
     float[] lerpedBuffer;
     public void draw()
     {
+        float total = 0;
+        for(int i = 0 ; i < ab.size() ; i ++)
+        {
+            total += abs(ab.get(i));
+        }
+        float average = total / ab.size();
+
+        lerpedAverage = lerp(lerpedAverage, average, 0.1f);
+
+        lights();
         background(0);
         colorMode(HSB);
-        stroke(255);
-        
-        box(100);
+
+        float c = map(lerpedAverage, 0, 0.5f, 0, 255);
+        stroke(c, 255, 255);
+        strokeWeight(5);
+
+        rot += map(lerpedAverage, 0, 1.0f, 0, 0.5f);
+        noFill();
+        translate(width / 2, height / 2);
+        rotateY(rot);
+        rotateX(rot);
+
+        float boxSize =  map(lerpedAverage, 0, 0.5f, 100, 500);
+
+        box(boxSize);
+
+        rot += 0.01f;
     }
 
     float lerpedY = 0;
