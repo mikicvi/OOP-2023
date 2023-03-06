@@ -15,6 +15,7 @@ public class Life extends PApplet
 		colorMode(RGB);
 		background(0);
 		board = new LifeBoard(50, this);
+		board.randomise();
 
 		
 		

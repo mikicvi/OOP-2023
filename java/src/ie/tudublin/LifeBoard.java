@@ -14,7 +14,7 @@ public class LifeBoard {
         this.size = size;
         board = new boolean[size][size];
         this.p = p;
-        cellWidth = p.width / (float) size;
+        cellWidth = p.width / (float)size;
 
     }
 
