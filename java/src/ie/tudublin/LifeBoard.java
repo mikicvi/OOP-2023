@@ -68,7 +68,7 @@ public class LifeBoard {
                     {
                         next[row][col] = true;
                     }
-                    else
+                    else if(count < 2 || count > 3)
                     {
                         next[row][col] = false;
                     }
