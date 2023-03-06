@@ -5,7 +5,6 @@ import processing.core.PApplet;
 public class LifeBoard {
     boolean [][] board;
     boolean [][] next;
-    
     private int size;
     PApplet p;
     float cellWidth;
@@ -42,7 +41,7 @@ public class LifeBoard {
             {
                 if (! (i == 0) && (j == 0))
                 {
-                    if(getCell(i, j))
+                    if(getCell(row + i, col + j))
                     {
                         count ++;
                     }
@@ -55,30 +54,29 @@ public class LifeBoard {
     public void applyRules()
     {
         // count <2 or >3 dies
-        // 2 or 3 exactly - ruvive
+        // 2 or 3 exactly - keep alive
         //
-        //3 if dead then birth
+        //count 3 if dead then birth
 
         for(int row = 0; row < size; row++)
         {
             for(int col = 0; col < size; col++)
             {   
                 int count = countCells(row, col);
-                if(board[row][col])
+                if (board[row][col])
                 {
-                    if(count == 2 || count == 3)
-                    {
-                        next[row][col] = false;
-                    }
-                    else if(count < 2 || count > 3)
+                    if (count == 2 || count == 3)
                     {
                         next[row][col] = true;
                     }
-
+                    else
+                    {
+                        next[row][col] = false;
+                    }
                 }
                 else
                 {
-                    if(count == 3)
+                    if (count == 3)
                     {
                         next[row][col] = true;
                     }
@@ -88,7 +86,6 @@ public class LifeBoard {
                     }
                 }
             }
-
         }
         boolean[][] temp = board;
         board = next;
@@ -97,7 +94,7 @@ public class LifeBoard {
 
     public void randomise()
     {
-        for(int row = 0; row < size; row++)
+        for (int row = 0; row < size; row++)
         {
             for(int col = 0; col < size; col++)
             {
@@ -109,14 +106,17 @@ public class LifeBoard {
 
     public void render()
     {
-        for(int row = 0; row < size; row++)
+        p.background(0);
+        for (int row = 0; row < size; row++)
         {
-            for(int col = 0; col < size; col++)
+            for (int col = 0; col < size; col++)
             {   
-                float x = col * cellWidth;
-                float y = row * cellWidth;
+                float x = PApplet.map(col, 0, size, 0, p.width);
+                float y = PApplet.map(row, 0, size, 0, p.height);
+                x = col * cellWidth;
+                y = row * cellWidth;
 
-                if(board[row][col])
+                if (board[row][col])
                 {
                     p.fill(0,255,0);
                 }
