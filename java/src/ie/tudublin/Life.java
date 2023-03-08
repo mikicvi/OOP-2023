@@ -9,8 +9,8 @@ public class Life extends PApplet
 
 	public void settings()
 	{
-		size(1000, 1000);
-		board = new LifeBoard(100, this);
+		size(1920, 1200);
+		board = new LifeBoard(500, this);
 		board.randomise();
 
 	}
