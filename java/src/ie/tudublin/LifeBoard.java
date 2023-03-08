@@ -130,20 +130,28 @@ public class LifeBoard {
             board[row][size - row - 1] = true;
         }
     }
+    public int colorRandom()
+    {
+        int r = (int) p.random(0, 255);
+        int g = (int) p.random(0, 255);
+        int b = (int) p.random(0, 255);
+        return p.color(r, g, b);
+    }
 
     public void render()
     {
         for(int row = 0 ; row < size ; row ++)
         {
-            p.stroke(255);
+            /////p.stroke(255);
             for (int col = 0 ; col < size ; col ++)
             {
                 float x = col * cellWidth;
                 float y = row * cellWidth;
-
+                
                 if (board[row][col])
                 {
-                    p.fill(0, 255, 0);
+                    // p.fill(0, 255, 0);
+                    p.fill(colorRandom());
                 }
                 else
                 {
