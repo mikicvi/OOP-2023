@@ -9,7 +9,7 @@ public class Life extends PApplet
 	int state = 0;
 	public void settings()
 	{
-		size(1920, 1200);
+		size(1000, 1000);
 	}
 
 	public void setup() {
@@ -34,7 +34,10 @@ public class Life extends PApplet
 				board.clear();
 				break;
 			case '3':
-				
+				board.cross();
+				break;
+		}
+
 	}
 
 	public void draw()

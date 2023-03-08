@@ -115,6 +115,22 @@ public class LifeBoard {
         }
     }
 
+    public void cross ()
+    {
+        for(int row = 0 ; row < size ; row ++)
+        {
+            for (int col = 0 ; col < size ; col ++)
+            {
+                board[row][col] = false;
+            }
+        }
+        for(int row = 0 ; row < size ; row ++)
+        {
+            board[row][row] = true;
+            board[row][size - row - 1] = true;
+        }
+    }
+
     public void render()
     {
         for(int row = 0 ; row < size ; row ++)
