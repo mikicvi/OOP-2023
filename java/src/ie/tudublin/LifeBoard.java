@@ -104,6 +104,17 @@ public class LifeBoard {
         }
     }
 
+    public void clear()
+    {
+        for(int row = 0 ; row < size ; row ++)
+        {
+            for (int col = 0 ; col < size ; col ++)
+            {
+                board[row][col] = false;
+            }
+        }
+    }
+
     public void render()
     {
         for(int row = 0 ; row < size ; row ++)
