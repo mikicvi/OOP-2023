@@ -46,15 +46,13 @@ public class Life extends PApplet
 		mouseY = (int)map(mouseY, 0, height, 0, board.getSize());
 		board.setCell(mouseY, mouseX);
 	}
-	
-	// public void mousePressed()
-	// {
-	// 	if(mouse)
-	// 	{
-	// 		mouseX = (int)map(mouseX, 0, width, 0, board.getSize());
-	// 		mouseY = (int)map(mouseY, 0, height, 0, board.getSize());
-	// 		board.setCell(mouseX, mouseY);}
-	// }
+
+	public void mouseClicked()
+	{
+		mouseX = (int)map(mouseX, 0, width, 0, board.getSize());
+		mouseY = (int)map(mouseY, 0, height, 0, board.getSize());
+		board.drawGlider(mouseY, mouseX);
+	}
 
 	public void draw()
 	{	

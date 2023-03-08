@@ -154,6 +154,15 @@ public class LifeBoard {
         }
     }
 
+    public void drawGlider(int row, int col)
+    {
+        board[row][col] = true;
+        board[row + 1][col + 1] = true;
+        board[row + 2][col + 1] = true;
+        board[row + 2][col] = true;
+        board[row + 2][col - 1] = true;
+    }
+
     public void render()
     {
         for(int row = 0 ; row < size ; row ++)
@@ -177,6 +186,7 @@ public class LifeBoard {
             }
         }
     }
+
 
 
     public int getSize() {
