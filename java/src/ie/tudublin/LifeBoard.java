@@ -138,11 +138,27 @@ public class LifeBoard {
         return p.color(r, g, b);
     }
 
+    public void setCell(int row, int col)
+    {
+        for(int i = -1 ; i <= 1 ; i ++)
+        {
+            for (int j = -1 ; j <= 1 ; j ++)
+            {
+                if (row >= 0 && row < size && col >= 0 && col < size)
+                {
+                    
+                    board[row + i][col + j] = true;
+                }
+
+            }
+        }
+    }
+
     public void render()
     {
         for(int row = 0 ; row < size ; row ++)
         {
-            /////p.stroke(255);
+            //p.stroke(255);
             for (int col = 0 ; col < size ; col ++)
             {
                 float x = col * cellWidth;
@@ -150,8 +166,8 @@ public class LifeBoard {
                 
                 if (board[row][col])
                 {
-                    // p.fill(0, 255, 0);
-                    p.fill(colorRandom());
+                    // p.fill(0, 255, 0); //uncomment to disable unicorn puke
+                    p.fill(colorRandom()); // comment out to disable unicorn puke
                 }
                 else
                 {
