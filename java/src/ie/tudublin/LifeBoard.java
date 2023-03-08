@@ -30,9 +30,9 @@ public class LifeBoard {
         {
             for (int j = -1 ; j <= 1 ; j ++)
             {
-                if (! (i == 0) && (j == 0))
+                if (! (i == 0 && j == 0))
                 {
-                    if (getCell(i, j))
+                    if (getCell(row + i,col + j))
                     {
                         count ++;
                     }

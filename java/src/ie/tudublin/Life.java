@@ -23,6 +23,7 @@ public class Life extends PApplet
 		background(0);
 		board.render();
 		board.applyRules();
+		delay(100);
 		
 	}
 }
