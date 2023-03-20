@@ -177,7 +177,7 @@ public class LifeBoard {
                 {
                     // p.fill(0, 255, 0); //uncomment to disable unicorn puke
                     p.fill(colorRandom()); // comment out to disable unicorn puke
-                }
+                }   
                 else
                 {
                     p.noFill();
