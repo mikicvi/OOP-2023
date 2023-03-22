@@ -6,8 +6,10 @@ public class AIShip extends Ship {
         super(x, y, size, c, p);
     }
 
-    public void move() {
-        // TODO Auto-generated method stub
+    public void AImove() {
+        // make the ship move to random positions on the screen
+        
+        
 
     }
     
