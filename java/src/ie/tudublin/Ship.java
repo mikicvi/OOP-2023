@@ -3,7 +3,8 @@ package ie.tudublin;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Ship {
+public class Ship 
+{
     private PVector pos;
     private PVector forward;
     private PApplet p;
@@ -56,13 +57,6 @@ public class Ship {
 
         YASC yasc= ((YASC)p);
         
-        if (yasc.keys[PApplet.LEFT])
-        {
-            rot -= 0.1f;
-        }
-
-        YASC yasc = ((YASC)p);
-        
         if (p.keyPressed)
         {            
             if (yasc.keys [PApplet.LEFT])
@@ -112,5 +106,5 @@ public class Ship {
     }    
 
     
-    
+}
 }
