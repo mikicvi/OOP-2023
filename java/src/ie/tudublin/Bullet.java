@@ -11,7 +11,7 @@ public class Bullet  {
     PApplet p;
     float c;
 
-    public Bullet(float x, float y, PApplet p, float rot, float c)
+    public Bullet(float x, float y, float rot, float c, PApplet p)
     {
         pos = new PVector(x, y);
         forward = new PVector(0,-1);

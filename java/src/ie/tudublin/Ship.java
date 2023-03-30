@@ -64,34 +64,36 @@ public class Ship
                 rot -= 0.1f;
             }
 
-        if (yasc.keys[PApplet.RIGHT])
-        {
-            rot += 0.1f;
+            if (yasc.keys[PApplet.RIGHT])
+            {
+                rot += 0.1f;
+            }
+
+            if (yasc.keys[PApplet.UP])
+            {
+                pos.x += forward.x;
+                pos.y += forward.y;
+            }
+
+            if (yasc.keys[PApplet.DOWN])
+            {
+                pos.x -= forward.x;
+                pos.y -= forward.y;
+            }
+            if (yasc.keys[' '])
+            {
+                PVector inFront = PVector.add(pos,
+                    PVector.mult(forward, 30)
+                    );  
+                
+                Bullet b = new Bullet(inFront.x, inFront.y, rot, c, p);
+
+                ((YASC)p).bullets.add(b);
+            }
         }
 
-        if (yasc.keys[PApplet.UP])
-        {
-            pos.x += forward.x;
-            pos.y += forward.y;
-        }
-
-        if (yasc.keys[PApplet.DOWN])
-        {
-            pos.x -= forward.x;
-            pos.y -= forward.y;
-        }
-        if (yasc.keys[' '])
-        {
-            PVector inFront = PVector.add(pos,
-                PVector.mult(forward, 30)
-                );  
-            
-            Bullet b = new Bullet(inFront.x, inFront.y, rot, c, p);
-
-            ((YASC)p).bullets.add(b);
-        }
+    
     }
-
     public void render()
     {
         p.pushMatrix();
@@ -103,8 +105,6 @@ public class Ship
         p.line(halfSize, halfSize, 0, 0);
         p.line(0, 0, -halfSize, halfSize);
         p.popMatrix();
-    }    
+    } 
+}   
 
-    
-}
-}
