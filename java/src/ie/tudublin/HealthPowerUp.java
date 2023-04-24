@@ -1,12 +1,14 @@
 package ie.tudublin;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class HealthPowerUp extends GameObject implements PowerUp
 {
 
     float w;
     float halfW;
+    float speed = 1;
 
     public HealthPowerUp(float x, float y, float r, int c, YASC p) 
     {
@@ -29,7 +31,21 @@ public class HealthPowerUp extends GameObject implements PowerUp
     @Override
     public void update() {
         rot += 0.01f;
-        pos.add(forward);
+        pos.add(PVector.mult(forward, speed));
+
+        if (pos.x < 0)
+        {
+            pos.x = p.width;
+        }
+        if (pos.y < 0)
+        {
+            pos.y = p.height;
+        }
+        if (pos.x > p.width)
+        {
+            pos.x = 0;
+        }
+        
     }
 
     @Override

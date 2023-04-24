@@ -47,6 +47,7 @@ public class YASC extends PApplet
 
 		gameObjects.add(ship);
 		gameObjects.add(ship1);
+		gameObjects.add(new HealthPowerUp(60, 100, 0, 255, this));
 		
 
 		colorMode(HSB);
