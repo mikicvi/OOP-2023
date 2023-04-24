@@ -33,6 +33,10 @@ public class Ship extends GameObject {
                 health --;
                 ((YASC)p).gameObjects.remove(go);
             }
+            if (go instanceof PowerUp && PVector.dist(go.pos, pos) < halfSize)
+            {
+                ((YASC)p).gameObjects.remove(go);
+            }
         }
 
     }

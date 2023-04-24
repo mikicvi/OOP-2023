@@ -19,8 +19,11 @@ public class HealthPowerup extends GameObject implements PowerUp{
 
     @Override
     public void applyTo(Ship s) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'applyTo'");
+        // add health to the ship
+        s.health += 10;
+        
+        // remove the powerup from the game
+        ((YASC)p).gameObjects.remove(this);
     }
 
     float speed = 1;
