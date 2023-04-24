@@ -10,8 +10,6 @@ public class Bullet extends GameObject {
 
     private float speed;
 
-    private float speed;
-
     public Bullet(float x, float y, float rot, float c, PApplet p)
     {
         super(x, y, rot, c, p);

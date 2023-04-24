@@ -46,13 +46,13 @@ public abstract class GameObject  {
     protected PApplet p;
     protected int c;
 
-    public GameObject(float x, float y, float rot, int c, PApplet p)
+    public GameObject(float x, float y, float rot, float c2, PApplet p)
     {
         pos = new PVector(x, y);
         forward = new PVector(0, -1);
         this.p = p;
         this.rot = rot;
-        this.c = c;
+        this.c = (int) c2;
     }
 
     public abstract void update();
