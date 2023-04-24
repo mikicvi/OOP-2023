@@ -45,7 +45,7 @@ public class HealthPowerUp extends GameObject implements PowerUp
         {
             pos.x = 0;
         }
-        
+
     }
 
     @Override
@@ -55,9 +55,10 @@ public class HealthPowerUp extends GameObject implements PowerUp
         p.stroke(255);
         p.translate(pos.x, pos.y);
         p.rotate(rot);
-        p.rect(-halfW, halfW, w, w);
-        p.line(0, -20, 0,20);
-        p.line(-20, 0, 20, 0);
+        // rectangle with cross in the middle
+        p.rect(-halfW, -halfW, w, w);
+        p.line(-halfW, 0, halfW, 0);
+        p.line(0, -halfW, 0, halfW);
         p.popMatrix();
         
     }
